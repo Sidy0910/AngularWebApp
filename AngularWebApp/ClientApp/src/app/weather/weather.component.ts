@@ -1,25 +1,24 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
-import { inject } from '@angular/core/testing';
-import { WeatherModel } from '../Models/WeatherModel';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Component, Inject, OnInit } from "@angular/core";
+import { inject } from "@angular/core/testing";
+import { WeatherModel } from "../Models/WeatherModel";
 
 @Component({
-  selector: 'app-weather',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css']
+  selector: "app-weather",
+  templateUrl: "./weather.component.html",
+  styleUrls: ["./weather.component.css"],
 })
 export class WeatherComponent implements OnInit {
-  @Inject('BASE_URL')
+  @Inject("BASE_URL")
   weatherModel: WeatherModel[];
+  weatherModelCopy: WeatherModel[];
   loading: boolean;
   baseUrl: string;
   cityValue = "";
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getValue(value: string) {
     console.log(value);
@@ -28,14 +27,16 @@ export class WeatherComponent implements OnInit {
   }
 
   public getRequest(value: string) {
-    let params = new HttpParams().set('city', value);
-    console.log('params', params);
-    return this.httpClient.get<WeatherModel[]>('weather', { params }).subscribe(res => {
-      console.log('fisrst', res),
-      this.weatherModel = res;
-      console.log('second', this.weatherModel);
-    },
-      error => console.log(error));
+    let wm: WeatherModel[];
+    let params = new HttpParams().set("city", value);
+    return this.httpClient.get<WeatherModel[]>("weather", { params }).subscribe(
+      (res) => {
+        wm = res;
+        this.weatherModelCopy = wm;
+        console.log(this.weatherModelCopy);
+        console.log('sucesss...', this.weatherModel);
+      },
+      (error) => console.log(error)
+    );
   }
-
 }
