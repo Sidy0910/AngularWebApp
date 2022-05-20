@@ -1,0 +1,49 @@
+<h1 id="tableLabel">Météo</h1>
+
+<p *ngIf="!weather">Chargement...</p>
+
+<div>
+  <input
+    style="padding-bottom: 20px"
+    #box
+    type="text"
+    placeholder="Entrez le nom d'une ville"
+    name="city"
+  />
+</div>
+
+<button (click)="getValue(box.value)">Rechercher</button>
+
+<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="weather">
+  <thead>
+    <tr>
+      <th>Lieu</th>
+      <th>Date</th>
+      <th>Heure</th>
+      <th>Température</th>
+      <th>Ressenti</th>
+      <th>Humidiité</th>
+      <th>Conditions</th>
+      <th>Lever du soleil</th>
+      <th>Coucher du soleil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ weatherModel.address }}</td>
+      <td>{{ weatherModel.currentConditions.dateTime }}</td>
+      <td>{{ weatherModel.currentConditions.dateTime }}</td>
+      <td>Il fait actuellement {{ weatherModel.currentConditions.temp }}°</td>
+      <td>
+        Il y a actuellement un ressenti de
+        {{ weatherModel.currentConditions.feelslike }}°
+      </td>
+      <td>
+        Le taux d'humidité est de {{ weatherModel.currentConditions.humidity }}%
+      </td>
+      <td>Le temps est {{ weatherModel.currentConditions.conditions }}</td>
+      <td>Le soleil se lève à {{ weatherModel.currentConditions.sunrise }}</td>
+      <td>le soleil se couche à {{ weatherModel.currentConditions.sunset }}</td>
+    </tr>
+  </tbody>
+</table>
