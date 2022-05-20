@@ -3,13 +3,7 @@
 <p *ngIf="!weatherModelCopy">Chargement...</p>
 
 <div>
-  <input
-    style="padding-bottom: 20px"
-    #box
-    type="text"
-    placeholder="Entrez le nom d'une ville"
-    name="city"
-  />
+  <input style="padding-bottom: 20px" #box type="text" placeholder="Entrez le nom d'une ville" name="city" />
 </div>
 
 <button (click)="getValue(box.value)">Rechercher</button>
@@ -31,8 +25,8 @@
   <tbody>
     <tr>
       <td>{{ weatherModelCopy.address }}</td>
-      <td>{{ weatherModelCopy.currentConditions.dateTime }}</td>
-      <td>{{ weatherModelCopy.currentConditions.dateTime }}</td>
+      <td>{{ weatherModelCopy.currentConditions.dateTime | date :'medium' }}</td>
+      <td>{{ weatherModelCopy.currentConditions.dateTime | date :'medium' }}</td>
       <td>Il fait actuellement {{ weatherModelCopy.currentConditions.temp }}°</td>
       <td>
         Il y a actuellement un ressenti de
@@ -47,3 +41,8 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="weatherModelCopy">
+  <h4>Le temps actuel sur la ville de {{ weatherModelCopy?.address }} est actuellement de
+    {{ weatherModelCopy?.currentConditions.temp }}°C</h4>
+</div>
