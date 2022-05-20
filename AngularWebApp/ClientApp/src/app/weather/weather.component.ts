@@ -32,6 +32,7 @@ export class WeatherComponent implements OnInit {
     console.log('params', params);
     return this.httpClient.get<WeatherModel[]>('weather', { params }).subscribe(res => {
       console.log('fisrst', res),
+      // test
       this.weatherModel = res;
       console.log('second', this.weatherModel);
     },
