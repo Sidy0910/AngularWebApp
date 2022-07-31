@@ -1,20 +1,14 @@
 <h1 id="tableLabel">Météo</h1>
 
-<p *ngIf="!weather">Chargement...</p>
+<p *ngIf="!weatherModelCopy">Chargement...</p>
 
 <div>
-  <input
-    style="padding-bottom: 20px"
-    #box
-    type="text"
-    placeholder="Entrez le nom d'une ville"
-    name="city"
-  />
+  <input style="padding-bottom: 20px" #box type="text" placeholder="Entrez le nom d'une ville" name="city" />
 </div>
 
 <button (click)="getValue(box.value)">Rechercher</button>
 
-<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="weather">
+<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="weatherModelCopy">
   <thead>
     <tr>
       <th>Lieu</th>
@@ -30,20 +24,25 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{ weatherModel.address }}</td>
-      <td>{{ weatherModel.currentConditions.dateTime }}</td>
-      <td>{{ weatherModel.currentConditions.dateTime }}</td>
-      <td>Il fait actuellement {{ weatherModel.currentConditions.temp }}°</td>
+      <td>{{ weatherModelCopy.address }}</td>
+      <td>{{ weatherModelCopy.currentConditions.dateTime | date :'medium' }}</td>
+      <td>{{ weatherModelCopy.currentConditions.dateTime | date :'medium' }}</td>
+      <td>Il fait actuellement {{ weatherModelCopy.currentConditions.temp }}°</td>
       <td>
         Il y a actuellement un ressenti de
-        {{ weatherModel.currentConditions.feelslike }}°
+        {{ weatherModelCopy.currentConditions.feelslike }}°
       </td>
       <td>
-        Le taux d'humidité est de {{ weatherModel.currentConditions.humidity }}%
+        Le taux d'humidité est de {{ weatherModelCopy.currentConditions.humidity }}%
       </td>
-      <td>Le temps est {{ weatherModel.currentConditions.conditions }}</td>
-      <td>Le soleil se lève à {{ weatherModel.currentConditions.sunrise }}</td>
-      <td>le soleil se couche à {{ weatherModel.currentConditions.sunset }}</td>
+      <td>Le temps est {{ weatherModelCopy.currentConditions.conditions }}</td>
+      <td>Le soleil se lève à {{ weatherModelCopy.currentConditions.sunrise }}</td>
+      <td>le soleil se couche à {{ weatherModelCopy.currentConditions.sunset }}</td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="weatherModelCopy">
+  <h4>Le temps actuel sur la ville de {{ weatherModelCopy?.address }} est actuellement de
+    {{ weatherModelCopy?.currentConditions.temp }}°C</h4>
+</div>
