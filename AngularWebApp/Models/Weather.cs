@@ -15,6 +15,7 @@ namespace AngularWebApp.Models
         {
             public DateTime DateTime { get; set; }
             public decimal Temp { get; set; }
+            public decimal TempMax { get; set; }
             public decimal Humidity { get; set; }
             public string Conditions { get; set; }
 

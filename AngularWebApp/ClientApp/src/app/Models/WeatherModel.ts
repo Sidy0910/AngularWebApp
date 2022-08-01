@@ -7,6 +7,7 @@ export class WeatherModel {
 export class DaysWeather {
     dateTime: Date;
     temp: number;
+    tempMax: number;
     humidity: number;
     conditions: string;
     hours: HoursDay[] = [];

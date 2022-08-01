@@ -46,3 +46,50 @@
   <h4>Le temps actuel sur la ville de {{ weatherModelCopy?.address }} est actuellement de
     {{ weatherModelCopy?.currentConditions.temp }}°C</h4>
 </div>
+
+<h5 *ngIf="weatherModelCopy">-----------------------------------------------------------------------------------------------</h5>
+
+<div *ngIf="weatherModelCopy">
+  <h4>Jours de la semaine</h4>
+  <table class="table table-striped" aria-labelledby="tableLabel" id="alignElements">
+    <thead>
+      <tr>
+        <th>Aujourd'hui</th>
+        <th>{{ weatherModelCopy?.days[1].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[2].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[3].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[4].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[5].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[6].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[7].dateTime | date : 'EEEE' }}</th>
+        <th>{{ weatherModelCopy?.days[8].dateTime | date : 'EEEE' }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ weatherModelCopy?.days[0].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[1].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[2].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[3].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[4].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[5].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[6].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[7].tempMax }}°</td>
+        <td>{{ weatherModelCopy?.days[8].tempMax }}°</td>
+      </tr>
+      <tr>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[0].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[1].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[2].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[3].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[4].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[5].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[6].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[7].conditions)" width="50" height="50" /></td>
+        <td><img [src]="getImageWeather(weatherModelCopy?.days[8].conditions)" width="50" height="50" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
